@@ -16,7 +16,7 @@ with open(file, 'r', encoding='utf-8') as text:
 allMatches = re.findall(PATTERN, text)
 
 # Print out the matches and the respective index
-for match, i in enumerate(allMatches):
+for i, match in enumerate(allMatches):
     if len(match) > 1:
         buildMatchString = ''.join(match)
         print(f'{i} {buildMatchString}\n')
