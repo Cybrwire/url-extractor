@@ -1,21 +1,18 @@
 
 import re
+from tkinter.filedialog import askopenfilename
 
+# Open an askfile window
+file = askopenfilename(
+    filetypes=[('Text Files', '*.txt'), ('All Files', '*.*')])
 
-with open('./properties-to-delete-in-gnl.txt') as text:
-    text = text.read()
-    pattern = '\(([-a-z0-9@:%_\+.~#?&/=]*)?\.?([-a-z]*\.[-a-z]{2,4})(\.[-a-z]{2,4})?(\/[-a-zA-Z0-9@:%_\+.~#?&/=]*)?\)'
-    allMatches = re.findall(pattern, text)
+# Set pattern for searching
+PATTERN = '\(([-a-z0-9@:%_\+.~#?&/=]*)?\.?([-a-z]*\.[-a-z]{2,4})(\.[-a-z]{2,4})?(\/[-a-zA-Z0-9@:%_\+.~#?&/=]*)?\)'
 
-i = 1
+# Open file, read data, and find all matches
+with open(file, 'r', encoding='utf-8') as f:
+    allMatches = re.findall(PATTERN, f.read())
 
-for match in allMatches:
-    if len(match) > 1:
-        buildMatchString = ''.join(match)
-        print(str(i) + " " + buildMatchString)
-        print()
-        
-    else:
-        print(str(i) +  " " + match)
-        print()
-    i+=1
+# Print out the matches and the respective index
+for i, match in enumerate(allMatches):
+    print(f'{i} {"".join(match)}\n')
