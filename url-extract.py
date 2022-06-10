@@ -15,7 +15,4 @@ with open(file, 'r', encoding='utf-8') as f:
 
 # Print out the matches and the respective index
 for i, match in enumerate(allMatches):
-    if len(match) > 1:
-        print(f'{i} {"".join(match)}\n')
-    else:
-        print(f'{i} {match}\n')
+    print(f'{i} {"".join(match)}\n')
